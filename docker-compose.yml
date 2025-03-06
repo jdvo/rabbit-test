@@ -1,0 +1,15 @@
+
+services:
+  send:
+    image: node:22.10-alpine
+    volumes:
+      - ./send.js:/send.js
+      - ./node_modules/:/node_modules/
+    command: /send.js
+
+  receive:
+    image: node:22.10-alpine
+    volumes:
+      - ./receive.js:/receive.js
+      - ./node_modules/:/node_modules/
+    command: /receive.js
