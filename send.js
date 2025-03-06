@@ -1,6 +1,6 @@
 import { connect } from 'amqplib';
 
-const connection = await connect('amqp://rabbit3.ansibletest.jamie.ovh');
+const connection = await connect('amqp://root:password@rabbit3.ansibletest.jamie.ovh');
 
 const channel = await connection.createChannel();
 
