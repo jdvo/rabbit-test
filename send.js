@@ -9,6 +9,6 @@ const message = 'Hello!'
 
 setInterval(async function sendMessage() {
     await channel.assertQueue(queue, { durable: false })
-    console.log(`[x] Sent ${msg.content.toString()}`)
+    console.log(`[x] Sent ${message}`)
     channel.sendToQueue(queue, Buffer.from(message + ' at ' + (new Date())))
 }, 100)
