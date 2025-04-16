@@ -1,7 +1,7 @@
 import { connect } from 'amqplib';
 
 setInterval(async function sendMessage() {
-    let connection = await connect('amqp://root:password@10.1.0.100', { timeout: 5 });
+    let connection = await connect('amqp://root:password@10.1.0.100', { timeout: 5000 });
     let channel = await connection.createChannel();
     let queue = 'messages'
     let message = 'Hello!  at ' + (new Date())
