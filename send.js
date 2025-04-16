@@ -1,14 +1,12 @@
 import { connect } from 'amqplib';
 
-const connection = await connect('amqp://root:password@rabbit3.ansibletest.jamie.ovh');
-
-const channel = await connection.createChannel();
-
-const queue = 'messages'
-const message = 'Hello!'
-
 setInterval(async function sendMessage() {
+    connection = await connect('amqp://root:password@10.1.0.100');
+    channel = await connection.createChannel();
+    queue = 'messages'
+    message = 'Hello!'
+
     await channel.assertQueue(queue, { durable: false })
-    console.log(`[x] Sent ${message}`)
+    //console.log(`[x] Sent ${message}`)
     channel.sendToQueue(queue, Buffer.from(message + ' at ' + (new Date())))
-}, 100)
+}, 50)
