@@ -9,5 +9,4 @@ setInterval(async function sendMessage() {
     await channel.assertQueue(queue, { durable: false })
     console.log(`[x] Sent ${message}`)
     channel.sendToQueue(queue, Buffer.from(message))
-    connection.close()
 }, 50)
