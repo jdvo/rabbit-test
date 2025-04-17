@@ -16,8 +16,9 @@ setInterval(async function sendMessage() {
     let queue = 'messages'
     let randstring = crypto.randomBytes(20).toString('hex');
     let message = randstring
-    await client.set(randstring, 'value');
     await channel.assertQueue(queue, { durable: false })
-    console.log(`[x] Inserted "${randstring}" at ` + (new Date()))
-    channel.sendToQueue(queue, Buffer.from(message))
+    if (channel.sendToQueue(queue, Buffer.from(message))) {
+        console.log(`[x] Inserted "${randstring}" at ` + (new Date()));
+        await client.set(randstring, 'value');
+    }
 }, 50)
