@@ -18,6 +18,6 @@ setInterval(async function sendMessage() {
     let message = randstring
     await client.set(randstring, 'value');
     await channel.assertQueue(queue, { durable: false })
-    console.log(`[x] Inserted ${randstring} at ` + (new Date()))
+    console.log(`[x] Inserted "${randstring}" at ` + (new Date()))
     channel.sendToQueue(queue, Buffer.from(message))
 }, 50)

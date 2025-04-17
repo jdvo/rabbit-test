@@ -17,7 +17,7 @@ const queue = 'messages'
 await channel.assertQueue(queue, { durable: false })
 
 channel.consume(queue, (msg) => {
-    //console.log(`[x] Received ${msg.content.toString()}`)
+    console.log(`[x] Received ${msg.content.toString()}`)
     client.del(msg.content.toString());
     channel.ack(msg)
 })
