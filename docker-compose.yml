@@ -6,6 +6,7 @@ services:
       - ./send.js:/send.js
       - ./node_modules/:/node_modules/
     command: /send.js
+    restart: unless-stopped
 
   receive:
     image: node:22.10-alpine
@@ -13,3 +14,7 @@ services:
       - ./receive.js:/receive.js
       - ./node_modules/:/node_modules/
     command: /receive.js
+    restart: unless-stopped
+  redis:
+    image: redis:latest
+    restart: unless-stopped
